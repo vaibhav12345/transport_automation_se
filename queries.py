@@ -93,7 +93,7 @@ def retrive_next_week_booking(eid,day,db):
     max_date = datetime.datetime.now().date()+datetime.timedelta(days=day)
     for bk in db.carhire.find({'Employee Eid':eid}):
         bk_date = bk['Date Time'].date()
-        if bk_date<=max_date:
+        if bk_date<=max_date and bk_date>=datetime.datetime.now().date():
             booking_next_week.append(bk)
     
     return booking_next_week
